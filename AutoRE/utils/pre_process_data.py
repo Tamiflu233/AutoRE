@@ -14,7 +14,7 @@ def refine_redocred_data():
     :return:
     """
     for type in ['train', 'dev', 'test']:
-        data = json.load(open(f"../data/redocred/ori_redocred/{type}_revised.json"))
+        data = json.load(open(f"/root/projects/AutoRE/AutoRE/data/redocred/ori_redocred/{type}_revised.json"))
         new = []
         for index, sample in enumerate(data):
             if sample['labels']:
@@ -27,7 +27,7 @@ def refine_redocred_data():
                         if t['name'] not in sentence:
                             t['name'] = " ".join(sample['sents'][t['sent_id']][t['pos'][0]:t['pos'][1]])
                 new.append(sample)
-        json.dump(new, open(f"../data/redocred/ori_redocred/{type}_revised_refined.json", "w"), indent=4)
+        json.dump(new, open(f"/root/projects/AutoRE/AutoRE/data/redocred/ori_redocred/{type}_revised_refined.json", "w"), indent=4)
 
 def relation_count(source_file, save_file):
     """
@@ -387,35 +387,35 @@ def lora_fact(source_file, save_file):
 
 if __name__ == '__main__':
     # 对redocred数据进行预处理
-    make_redocred_data(data_types=['train', 'dev', 'test'], source_path="../data/redocred/ori_redocred", save_path="../data/redocred")
-    source_train = "../data/redocred/redocred_train.json"
-    source_test = "../data/redocred/redocred_test.json"
-    relation_count(source_file=source_test, save_file="../data/redocred/redocred_train_relation_count.json")
-    fact_count(source_file=source_test, save_file="../data/redocred/redocred_train_fact_count.json")
+    make_redocred_data(data_types=['train', 'dev', 'test'], source_path="/root/projects/AutoRE/AutoRE/data/redocred/ori_redocred", save_path="/root/projects/AutoRE/AutoRE/data/redocred")
+    source_train = "/root/projects/AutoRE/AutoRE/data/redocred/redocred_train.json"
+    source_test = "/root/projects/AutoRE/AutoRE/data/redocred/redocred_test.json"
+    relation_count(source_file=source_test, save_file="/root/projects/AutoRE/AutoRE/data/redocred/redocred_train_relation_count.json")
+    fact_count(source_file=source_test, save_file="/root/projects/AutoRE/AutoRE/data/redocred/redocred_train_fact_count.json")
     # 制作各个抽取范式的训练和测试数据集
     version = "D_F"
-    fact(source_file=source_train, save_file=f"../data/train/{version}/train.json")
-    fact(source_file=source_test, save_file=f"../data/train/{version}/test.json")
+    fact(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/train.json")
+    fact(source_file=source_test, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/test.json")
 
     version = "D_RS_F"
-    relations_fact(source_file=source_train, save_file=f"../data/train/{version}/train.json")
-    relations_fact(source_file=source_test, save_file=f"../data/train/{version}/test.json")
+    relations_fact(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/train.json")
+    relations_fact(source_file=source_test, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/test.json")
 
     version = "D_R_F"
-    relation_fact(source_file=source_train, save_file=f"../data/train/{version}/train.json")
-    relation_fact(source_file=source_test, save_file=f"../data/train/{version}/test.json")
+    relation_fact(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/train.json")
+    relation_fact(source_file=source_test, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/test.json")
 
     version = "D_R_H_F"
-    relation_subject_fact(source_file=source_train, save_file=f"../data/train/{version}/train.json")
-    relation_subject_fact(source_file=source_test, save_file=f"../data/train/{version}/test.json")
+    relation_subject_fact(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/train.json")
+    relation_subject_fact(source_file=source_test, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/test.json")
 
     version = "D_R_H_F_desc"
-    relation_subject_fact(source_file=source_train, save_file=f"../data/train/{version}/train.json")
-    relation_subject_fact(source_file=source_test, save_file=f"../data/train/{version}/test.json")
+    relation_subject_fact(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/train.json")
+    relation_subject_fact(source_file=source_test, save_file=f"/root/projects/AutoRE/AutoRE/data/train/{version}/test.json")
 
-    lora_relation(source_file=source_train, save_file=f"../data/loras/relation/train.json")
-    lora_relation(source_file=source_train, save_file=f"../data/loras/relation/test.json")
-    lora_subject(source_file=source_train, save_file=f"../data/loras/subject/train.json")
-    lora_subject(source_file=source_test, save_file=f"../data/loras/subject/test.json")
-    lora_fact(source_file=source_train, save_file=f"../data/loras/fact/train.json")
-    lora_fact(source_file=source_test, save_file=f"../data/loras/fact/test.json")
+    lora_relation(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/loras/relation/train.json")
+    lora_relation(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/loras/relation/test.json")
+    lora_subject(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/loras/subject/train.json")
+    lora_subject(source_file=source_test, save_file=f"/root/projects/AutoRE/AutoRE/data/loras/subject/test.json")
+    lora_fact(source_file=source_train, save_file=f"/root/projects/AutoRE/AutoRE/data/loras/fact/train.json")
+    lora_fact(source_file=source_test, save_file=f"/root/projects/AutoRE/AutoRE/data/loras/fact/test.json")

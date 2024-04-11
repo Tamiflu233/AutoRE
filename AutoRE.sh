@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # choice = [vicuan,chatglm3,mistral]
-model=vicuna
+model=mistral
 # 基础模型，替换为model对应的基础模型
-#BASE_MODEL=AutoRE/checkpoints/Mistral-7B-Instruct-v0.2
+BASE_MODEL=AutoRE/checkpoints/Mistral-7B-Instruct-v0.2
 #BASE_MODEL=AutoRE/checkpoints/THUDM6B3
-BASE_MODEL=AutoRE/checkpoints/lmsys/vicuna-7b-v1.5
+# BASE_MODEL=AutoRE/checkpoints/lmsys/vicuna-7b-v1.5
 # 加载QLoRA模块所在的地方
 model_path="AutoRE/ckpt/${model}/"
 
@@ -16,7 +16,7 @@ fact_step="4430"
 # 该模式为RHF抽取范式，即AutoRE的抽取范式
 version="D_R_H_F_desc"
 
-deepspeed --master_port 12347 --include localhost:1 inference.py \
+deepspeed --master_port 12347 --include localhost inference.py \
   --model_name_or_path ${BASE_MODEL} \
   --adapter_name_or_path ${model_path} \
   --template ${model} \

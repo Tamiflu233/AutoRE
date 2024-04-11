@@ -1,5 +1,5 @@
 #!/bin/bash
-source /workspace/xll/Anaconda3/bin/activate chatglm
+source /root/anaconda3/envs/autore/bin/activate autore
 # 初始化任务字典
 declare -A task_params
 

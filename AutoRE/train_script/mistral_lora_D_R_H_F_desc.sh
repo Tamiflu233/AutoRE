@@ -1,5 +1,5 @@
 #!/bin/bash
-source /workspace/xll/Anaconda3/bin/activate chatglm
+source /root/anaconda3/bin/activate autore
 # 定义模式变量
 mode="D_R_H_F_desc"
 
@@ -31,7 +31,7 @@ for task_name in "${!tasks[@]}"; do
   # 执行训练命令
 #  deepspeed --num_gpus 8 --master_port=9901 src/train_bash.py \
 #    --deepspeed ds_config/stage2.json \
-  CUDA_VISIBLE_DEVICES=2 /workspace/xll/Anaconda3/envs/chatglm/bin/python src/train_bash.py \
+  CUDA_VISIBLE_DEVICES=0 /root/anaconda3/envs/autore/bin/python src/train_bash.py \
     --stage sft \
     --do_train \
     --evaluation_strategy "steps" \
