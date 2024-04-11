@@ -1,0 +1,5 @@
+# Ignore all files in the AutoRE/AutoRE/checkpoints directory
+AutoRE/checkpoints/*
+
+# Ignore all files in the AutoRE/AutoRE/ckpt directory
+AutoRE/ckpt/*
